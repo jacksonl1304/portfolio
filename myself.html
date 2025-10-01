@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Le Thien Anh Khoa — Personal Portfolio</title>
+  <meta name="description" content="Portfolio website of Le Thien Anh Khoa — aspiring game developer, C++ enthusiast, and digital storytelling lover." />
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --card: #11141a;
+      --muted: #a9b0be;
+      --text: #e9ecf1;
+      --primary: #7c5cff;
+      --accent: #18c8a7;
+      --ring: #2b2f3a;
+      --chip-bg: #0e131a;
+      --chip-text: #e9ecf1;
+      --header-from: rgba(11,13,18,0.85);
+      --header-to: rgba(11,13,18,0.35);
+      --border: #1c1f27;
+      --nav-link: var(--muted);
+      --btn-bg: #0f1218;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(124,92,255,.15), transparent 60%), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      letter-spacing: 0.2px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1080px, 92%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(1.2) blur(8px);
+      background: linear-gradient(180deg, var(--header-from), var(--header-to));
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; gap: 18px; align-items: center; padding: 14px 0; }
+    .brand { font-weight: 700; letter-spacing: 0.5px; }
+    .spacer { flex: 1; }
+    .nav a { color: var(--nav-link); font-weight: 600; }
+    .nav a:hover { color: var(--text); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px;
+      border-radius: 100px; font-weight: 700; letter-spacing: .3px;
+      border: 1px solid var(--ring); background: var(--btn-bg); color: var(--text);
+    }
+    .btn:hover { border-color: #2e3543; box-shadow: 0 0 0 4px rgba(124,92,255,0.08); }
+    .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; padding: 56px 0; align-items: center; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)), var(--card);
+      border: 1px solid #1a1f29; border-radius: 18px; padding: 22px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.02);
+    }
+    h1 { font-size: clamp(28px, 4.2vw, 46px); line-height: 1.1; margin: 0 0 10px; }
+    h2 { font-size: clamp(22px, 3vw, 28px); margin: 0 0 12px; }
+    h3 { font-size: 18px; margin: 18px 0 8px; color: var(--muted); }
+    p { margin: 0 0 12px; color: var(--text); }
+    .tag { display: inline-flex; gap:6px; align-items:center; padding: 6px 10px; border: 1px solid #2a3040; border-radius: 999px; background:#0f1218; color:#cfd5e3; font-size: 13px; font-weight: 700; }
+    .grid { display:grid; gap:18px; grid-template-columns: repeat(3, 1fr); }
+    .two { grid-template-columns: repeat(2, 1fr); }
+    .list { display:flex; flex-wrap:wrap; gap:10px; }
+    .pill { background:var(--chip-bg); border:1px solid #273043; color:var(--chip-text); padding:8px 12px; border-radius:999px; font-weight:700; font-size:13px; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:#0b0f15; border:1px solid #283044; padding:.2em .45em; border-radius:6px; color:#e5e9f2; }
+    footer { margin: 36px 0 20px; color: var(--muted); text-align: center; font-size: 14px; }
+    .muted { color: var(--muted); }
+    .avatar { aspect-ratio: 1/1; border-radius: 14px; background: linear-gradient(135deg, rgba(124,92,255,.18), rgba(24,200,167,.18)); border:1px solid #222736; display:grid; place-items:center; font-size: 54px; font-weight: 900; letter-spacing: 2px; }
+    .section { padding: 18px; }
+    .hr { height: 1px; background: #1c2231; margin: 18px 0; border: 0; }
+    .progress { height: 10px; background:#141925; border:1px solid #232a3a; border-radius:999px; overflow: hidden; }
+    .progress > i { display:block; height:100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: var(--val, 60%); }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Khoa · Portfolio</div>
+      <nav class="spacer list">
+        <a href="#about">About</a><a href="#skills">Skills</a>
+        <a href="#learning">Learning</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="btn" id="themeBtn" aria-label="Toggle color theme">🌓 Theme</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="card">
+        <h1>Le Thien Anh Khoa</h1>
+        <p class="muted">Born on <strong>April 13, 2005</strong> · Aspiring <strong>Game Developer</strong> & <strong>C++ enthusiast</strong></p>
+        <p>
+          I’m a creator who loves building worlds through code and interactive stories. My dream is to become a professional game developer, found my own studio, and craft a game that resonates worldwide.
+        </p>
+        <div class="list" style="margin-top:12px">
+          <span class="tag">🎮 Plays games</span>
+          <span class="tag">💻 Codes for fun</span>
+          <span class="tag">🎼 Makes music</span>
+          <span class="tag">✈️ Loves travel</span>
+        </div>
+      </div>
+     <div class="card avatar" aria-label="Profile photo">
+ <img src="IMG_5979.jpg" alt="Le Thien Anh Khoa" style="width:70%; height:70%; object-fit:cover; border-radius:14px;" />
+</div>
+
+    </section>
+
+    <!-- About -->
+    <section id="about" class="grid">
+      <div class="card section">
+        <h2>About Me</h2>
+        <p>
+          Hi! I’m Khoa. I enjoy games not only as entertainment but as a medium for philosophy, ethics, society, politics, and big questions about life. I believe games can teach us how to be human.
+        </p>
+        <hr class="hr" />
+        <h3>Passion</h3>
+        <p>
+          Build <strong>meaningful games</strong> with strong narrative, systems design, and psychological depth. Long‑term goal: launch an independent <strong>game studio</strong> and ship a globally loved title.
+        </p>
+        
+      </div>
+      <div class="card section">
+        <h2>Quick Facts</h2>
+        <ul class="muted">
+          <li>📍 Based in the United States</li>
+          <li>🧠 Favorite subjects: Math, Chemistry, Computer Science, Literature</li>
+          <li>🛠️ Currently self‑studying <strong>Unreal Engine</strong></li>
+          <li>🎯 Primary language: <strong>C++</strong> (also Python, JavaScript, Lua)</li>
+        </ul>
+      </div>
+      <div class="card section">
+        <h2>Fast Facts & Interests</h2>
+        <div class="list">
+          <span class="pill">♈︎ Aries</span>
+          <span class="pill">⚽ Football/Soccer</span>
+          <span class="pill">🤺 Fencing</span>
+          <span class="pill">🎯 Esports</span>
+          <span class="pill">🛡️ Elden Ring — big fan</span>
+          <span class="pill">🎷 Jazz</span>
+          <span class="pill">💙 Blue</span>
+          <span class="pill">🎤 Pop</span>
+          <span class="pill">🎧 R&B</span>
+          <span class="pill">🎙️ Rap</span>
+          <span class="pill">🐶 Dog person</span>
+          <span class="pill">🐱 Cat person</span>
+          <span class="pill">🎮 Gaming</span>
+          <span class="pill">💻 Coding</span>
+          <span class="pill">🎼 Music making</span>
+          <span class="pill">✈️ Travel</span>
+          <span class="pill">🧩 Gameplay systems</span>
+          <span class="pill">🧭 Exploring new places</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="card section" style="margin-top:18px">
+      <h2>Technical Skills</h2>
+      <div class="grid two">
+        <div>
+          <h3>Programming</h3>
+          <div class="pill">C++ (primary)</div>
+          <div class="pill">Python</div>
+          <div class="pill">JavaScript</div>
+          <div class="pill">Lua</div>
+          <h3>Engines & Tools</h3>
+          <div class="pill">Unreal Engine (self‑learning)</div>
+          <div class="pill">Git & GitHub</div>
+          <div class="pill">VS Code</div>
+        </div>
+        <div>
+          <h3>Focus Areas</h3>
+          <p class="muted">Gameplay programming, systems design, AI behaviors, and game feel.</p>
+          <h3>Confidence</h3>
+          <p class="muted" style="margin-bottom:6px">(Self‑rated, growing every month)</p>
+          <div class="progress" aria-label="C++ proficiency"><i style="--val:85%"></i></div>
+          <p>C++</p>
+          <div class="progress" aria-label="Python proficiency"><i style="--val:70%"></i></div>
+          <p>Python</p>
+          <div class="progress" aria-label="JavaScript proficiency"><i style="--val:60%"></i></div>
+          <p>JavaScript</p>
+          <div class="progress" aria-label="Lua proficiency"><i style="--val:55%"></i></div>
+          <p>Lua</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning -->
+    <section id="learning" class="grid" style="margin-top:18px">
+      <div class="card section">
+        <h2>What I’m Learning Now</h2>
+        <p>
+          I’m focused on <strong>Unreal Engine</strong>: blueprints to C++ workflows, input systems, character movement, basic AI, and prototyping combat.
+        </p>
+        <p>
+          I love iteration—build, test, refine—and I value clean, readable code with solid architecture.
+        </p>
+      </div>
+      <div class="card section">
+        <h2>Mini Roadmap</h2>
+        <ul>
+          <li>Prototype a third‑person action demo (UE + C++).</li>
+          <li>Implement basic enemy AI (perception, states, behaviors).</li>
+          <li>Polish movement & camera feel; add VFX & SFX cues.</li>
+          <li>Ship a public itch.io demo and collect feedback.</li>
+        </ul>
+      </div>
+      <div class="card section">
+        <h2>Digital Storytelling</h2>
+        <p>
+          I care about stories told through code: interactive narratives with moral weight, player choice, and consequences. Games can be mirrors and teachers.
+        </p>
+      </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section id="philosophy" class="card section" style="margin-top:18px">
+      <h2>My View on Games</h2>
+      <p>
+        Games are not a negative influence by themselves. They can teach <em>humanity, ethics, society, politics,</em> and even <em>philosophy</em>. Whether a game is “good” or “bad” depends on how people use it. I want to defend the beauty of games as art.
+      </p>
+    </section>
+
+    <!-- Contact & Socials -->
+    <section id="contact" class="grid two" style="margin-top:18px">
+      <div class="card section">
+        <h2>Contact</h2>
+        <p class="muted">Feel free to reach out for collaboration, study groups, or game dev chats.</p>
+        <ul>
+          <li>Email: <a href="mailto:lethienanhkhoa1304@gmail.com" target="_blank" rel="noreferrer">lethienanhkhoa1304@gmail.com</a></li>
+          <li>Phone: <a href="tel:+12109989956">210‑998‑9956</a></li>
+        </ul>
+      </div>
+      <div class="card section">
+        <h2>Social Links</h2>
+        <ul>
+          <li>Facebook: <a href="https://facebook.com/jackson.le.862319" target="_blank" rel="noreferrer">Jackson Le</a></li>
+          <li>Instagram: <a href="https:\/\/www.instagram.com\/jacksonl.1304?igsh=MXA0ZHFuMDYxbDg1cg%3D%3D&utm_source=qr" target="_blank" rel="noreferrer">jacksonl.1304</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Le Thien Anh Khoa — Built with passion and curiosity.
+    </footer>
+  </main>
+
+  <script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href.length > 1) {
+          e.preventDefault();
+          document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle (light/dark + auto-detect OS)
+    const btn = document.getElementById('themeBtn');
+    const light = {
+      '--bg':'#f6f7fb', '--card':'#ffffff', '--muted':'#586073', '--text':'#0f1220', '--primary':'#6c5cff', '--accent':'#0aa08a', '--ring':'#e6e9f3',
+      '--chip-bg':'#eef1f7', '--chip-text':'#0f1220',
+      '--header-from':'rgba(255,255,255,0.85)', '--header-to':'rgba(255,255,255,0.55)', '--border':'#e6e9f3', '--nav-link':'#293042', '--btn-bg':'#f7f8fc'
+    };
+    const dark = {
+      '--bg':'#0b0d12', '--card':'#11141a', '--muted':'#a9b0be', '--text':'#e9ecf1', '--primary':'#7c5cff', '--accent':'#18c8a7', '--ring':'#2b2f3a',
+      '--chip-bg':'#0e131a', '--chip-text':'#e9ecf1',
+      '--header-from':'rgba(11,13,18,0.85)', '--header-to':'rgba(11,13,18,0.35)', '--border':'#1c1f27', '--nav-link':'#a9b0be', '--btn-bg':'#0f1218'
+    };
+    function setTheme(vars){ for (const k in vars) document.documentElement.style.setProperty(k, vars[k]); }
+    function apply(mode){ setTheme(mode === 'dark' ? dark : light); document.documentElement.dataset.theme = mode; }
+
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    let mode = 'dark';
+
+    // Load saved preference if exists; else follow OS
+    const saved = localStorage.getItem('khoa_theme');
+    const override = localStorage.getItem('khoa_theme_override') === '1';
+    if (saved) {
+      mode = saved; apply(mode);
+    } else {
+      mode = mq.matches ? 'light' : 'dark';
+      apply(mode);
+    }
+
+    // Toggle button sets a manual override
+    btn.addEventListener('click', () => {
+      mode = (document.documentElement.dataset.theme === 'dark') ? 'light' : 'dark';
+      apply(mode);
+      localStorage.setItem('khoa_theme', mode);
+      localStorage.setItem('khoa_theme_override', '1');
+    });
+
+    // If no manual override, keep following OS changes
+    mq.addEventListener('change', (e) => {
+      if (!localStorage.getItem('khoa_theme_override')) {
+        mode = e.matches ? 'light' : 'dark';
+        apply(mode);
+      }
+    });
+  </script>
+</body>
+</html>
